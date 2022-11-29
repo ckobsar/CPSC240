@@ -1,349 +1,349 @@
 Alabama
-c1
-c2
+Little Rock
+Springfield
 Montgomery
-c3
+Denver
 2
 
 Alaska
-c1
+Hartford
 Juneau
-c3
-c4
+Annapolis
+Columbus
 1
 
 Arizona
-c1
-c2
-c3
+Dover
+Jefferson City
+Carson City
 Phoenix
 3
 
 Arkansas
 Little Rock
-c2
-c3
-c4
+Topeka
+Frankfort
+Augusta
 0
 
 California
 Sacramento
-c2
-c3
-c4
+Lansing
+Albany
+Salem
 0
 
 Colorado
-c1
+Dover
 Denver
-c3
-c4
+Pierre
+Austin
 1
 
 Connecticut
-c1
-c2
-c3
+Nashville
+Providence
+Madison
 Hartford
 3
 
 Delaware
-c1
+Montpelier
 Dover
-c3
-c4
+Cheyenne
+Olympia
 1
 
 Florida
-c1
-c2
-c3
+Salt Lake City
+Salem
+Oklahoma City
 Tallahassee
 3
 
 Georgia
 Atlanta
-c2
-c3
-c4
+Austin
+Richmond
+Montpelier
 0
 
 Hawaii
 Honolulu
-c2
-c3
-c4
+Baton Rouge
+Augusta
+Des Moines
 0
 
 Idaho
-c1
-c2
+Springfield
+Montgomery
 Boise
-c4
+Sacramento
 2
 
 Illinois
-c1
-c2
-c3
+Atlanta
+Indianapolis
+Lansing
 Springfield
 3
 
 Indiana
-c1
-c2
+St. Paul
+Frankfort
 Indianapolis
-c4
+Boston
 2
 
 Iowa
 Des Moines
-c2
-c3
-c4
+Jackson
+Hartford
+Little Rock
 0
 
 Kansas
-c1
-c2
-c3
+Carson City
+Jackson
+Santa Fe
 Topeka
 3
 
 Kentucky
 Frankfort
-c2
-c3
-c4
+Raleigh
+Bismarck
+Harrisburg
 0
 
 Louisiana
-c1
-c2
-c3
+Providence
+Columbia
+Helena
 Baton Rouge
 3
 
 Maine
-c1
-c2
+Albany
+Boise
 Augusta
-c4
+Tallahassee
 2
 
 Maryland
 Annapolis
-c2
-c3
-c4
+St. Paul
+Boston
+Juneau
 0
 
 Massachusetts
-c1
+Dover
 Boston
-c3
-c4
+Springfield
+Augusta
 1
 
 Michigan
-c1
-c2
-c3
+Jackson
+Hartford
+Richmond
 Lansing
 3
 
 Minnesota
-c1
-c2
+Pierre
+Helena
 St. Paul
-c4
+Salem
 2
 
 Mississippi
-c1
+Trenton
 Jackson
-c3
-c4
+Carson City
+Jefferson City
 1
 
 Missouri
-c1
+Carson City
 Jefferson City
-c3
-c4
+Helena
+Santa Fe
 1
 
 Montana
-c1
-c2
-c3
+Raleigh
+Concord
+Boise
 Helena
 3
 
 Nebraska
 Lincoln
-c2
-c3
-c4
+Topeka
+Atlanta
+Des Moines
 0
 
 Nevada
-c1
+Denver
 Carson City
-c3
-c4
+Phoenix
+Montgomery
 1
 
 New Hampshire
-c1
+Lansing
 Concord
-c3
-c4
+Annapolis
+Lincoln
 1
 
 New Jersey
-c1
-c2
+Charleston
+Providence
 Trenton
-c4
+Cheyenne
 2
 
 New Mexico
-c1
-c2
-c3
+Nashville
+Austin
+Harrisburg
 Santa Fe
 3
 
 New York
 Albany
-c2
-c3
-c4
+Olympia
+New York City
+Salem
 0
 
 North Carolina
 Raleigh
-c2
-c3
-c4
+Charlotte
+Salem
+Durham
 0
 
 North Dakota
 Bismarck
-c2
-c3
-c4
+Pierre
+St. Paul
+Trenton
 0
 
 Ohio
-c1
+Trenton
 Columbus
-c3
-c4
+Richmond
+Concord
 1
 
 Oklahoma
-c1
-c2
+Austin
+Juneau
 Oklahoma City
-c4
+Honolulu
 2
 
 Oregon
-c1
-c2
+Portland
+Seattle
 Salem
-c4
+Los Angeles
 2
 
 Pennsylvania
-c1
+Pittsburgh
 Harrisburg
-c3
-c4
+Boise
+Hartford
 1
 
 Rhode Island
-c1
-c2
-c3
+Montgomery
+Augusta
+Frankfort
 Providence
 3
 
 South Carolina
-c1
-c2
-c3
+Charleston
+Clemson
+Cheyenne
 Columbia
 3
 
 South Dakota
 Pierre
-c2
-c3
-c4
+San Diego
+Nashville
+Richmond
 0
 
 Tennessee
-c1
+Madison
 Nashville
-c3
-c4
+Johnson City
+Columbia
 1
 
 Texas
 Austin
-c2
-c3
-c4
+Dallas
+Baton Rouge
+Jackson
 0
 
 Utah
-c1
-c2
+Cheyenne
+Helena
 Salt Lake City
-c4
+Concord
 2
 
 Vermont
-c1
-c2
+Raleigh
+Providence
 Montpelier
-c4
+Concord
 2
 
 Virginia
-c1
+Washington D.C.
 Richmond
-c3
-c4
+Fairfax
+Bismarck
 1
 
 Washington
-c1
+Trenton
 Olympia
-c3
-c4
+Seattle
+Portland
 1
 
 West Virginia
-c1
-c2
-c3
+Richmond
+Lincoln
+Lewisburg
 Charleston
 3
 
 Wisconsin
-c1
-c2
-c3
+Jackson
+Albany
+Green Bay
 Madison
 3
 
 Wyoming
 Cheyenne
-c2
-c3
-c4
+Oklahoma City
+Santa Fe
+Salt Lake City
 0
