@@ -16,4 +16,27 @@ public class State {
         this.choice4 = in.nextLine();
         this.correctAns = in.nextInt();
     }
+    public String getStateName() {
+        return stateName;
+    }
+
+    public String getChoice2() {
+        return choice2;
+    }
+
+    public String getChoice3() {
+        return choice3;
+    }
+
+    public int getCorrectAns() {
+        return correctAns;
+    }
+
+    public String getChoice4() {
+        return choice4;
+    }
+
+    public String getChoice1() {
+        return choice1;
+    }
 }
