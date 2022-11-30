@@ -26,7 +26,7 @@ public class Quiz extends JFrame implements ActionListener {
     // scroll the 50 states horizontally
     static JScrollPane scrollPane = new JScrollPane(stateContainer);
 
-    //set the panel to null so that you postion components
+    //set the panel to null so that you postion components 
     public Quiz(){
         mainPanel.setLayout(null);
 
