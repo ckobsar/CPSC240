@@ -25,7 +25,7 @@ public class Quiz extends JFrame implements ActionListener {
 
     // scroll the 50 states horizontally
     static JScrollPane scrollPane = new JScrollPane(stateContainer);
-
+    
 
     public Quiz(String fileName){
         File file = new File("stateslist.txt");
@@ -36,12 +36,48 @@ public class Quiz extends JFrame implements ActionListener {
             while (in.hasNextLine()){
                 quiz.add(new State(in));
                 in.nextLine();
+                
             }
         }
         catch (Exception stateReadError){
             stateReadError.printStackTrace();
         }
     }
+
+    public static JLabel getQuestionLabel() {
+        return questionLabel;
+    }
+    // set where the scroll pane will be on the main panel            
+        scrollPane.setBounds(10, 20, 360, 60);
+    // set where the question label will sit inside the main panel
+        questionLabel.setBounds(50, 105, 300, 40);
+    //set the postion for the choices
+        choice1.setBounds(50, 160, 200, 40);
+        choice2.setBounds(50, 200, 200, 40);
+        choice3.setBounds(50, 240, 200, 40);
+        choice4.setBounds(50, 280, 200, 40);
+    // setting position of counter label
+        counterLabel.setBounds(10, 360, 300, 40);
+    // add all components to the main panel
+        mainPanel.add(counterLabel);
+        mainPanel.add(questionLabel);
+        mainPanel.add(choice1);
+        mainPanel.add(choice2);
+        mainPanel.add(choice3);
+        mainPanel.add(choice4);
+    
+    // add scroll to the main panel
+        mainPanel.add(scrollPane);
+    
+    //add mainpanel to frame itself so you can see
+        add(mainPane);
+    //setting the size of the window
+        setSize(400, 500);
+    //making sure that the red x works on to close window
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //setting visible for the frame, otherwise you see nothing
+        setVisible(true);
+    
     public double userResults(){
         return 0.0;
     }
