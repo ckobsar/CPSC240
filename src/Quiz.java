@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Quiz extends JFrame implements ActionListener {
-    private String fileName;
     private static ArrayList<State> quiz;
     static JLabel counterLabel = new JLabel("\tCorrect: ");
     static int counter = 0;
@@ -26,13 +25,11 @@ public class Quiz extends JFrame implements ActionListener {
     // scroll the 50 states horizontally
     static JScrollPane scrollPane = new JScrollPane(stateContainer);
 
-    //set the panel to null so that you postion components 
+    //constructor loads 50 states and answer choices from state-list
     public Quiz(){
         mainPanel.setLayout(null);
 
-    public Quiz(String fileName){
         File file = new File("stateslist.txt");
-        this.fileName = fileName;
         try{
             Scanner in = new Scanner(file);
             quiz = new ArrayList<>();
@@ -47,39 +44,38 @@ public class Quiz extends JFrame implements ActionListener {
         }
     }
 
-    public static JLabel getQuestionLabel() {
-        return questionLabel;
-    }
-    // set where the scroll pane will be on the main panel            
+    public JLabel getQuestionLabel() {
+        // set where the scroll pane will be on the main panel
         scrollPane.setBounds(10, 20, 360, 60);
-    // set where the question label will sit inside the main panel
+        // set where the question label will sit inside the main panel
         questionLabel.setBounds(50, 105, 300, 40);
-    //set the postion for the choices
+        //set the postion for the choices
         choice1.setBounds(50, 160, 200, 40);
         choice2.setBounds(50, 200, 200, 40);
         choice3.setBounds(50, 240, 200, 40);
         choice4.setBounds(50, 280, 200, 40);
-    // setting position of counter label
+        // setting position of counter label
         counterLabel.setBounds(10, 360, 300, 40);
-    // add all components to the main panel
+        // add all components to the main panel
         mainPanel.add(counterLabel);
         mainPanel.add(questionLabel);
         mainPanel.add(choice1);
         mainPanel.add(choice2);
         mainPanel.add(choice3);
         mainPanel.add(choice4);
-    
-    // add scroll to the main panel
+        // add scroll to the main panel
         mainPanel.add(scrollPane);
-    
-    //add mainpanel to frame itself so you can see
+        //add mainpanel to frame itself so you can see
         add(mainPanel);
-    //setting the size of the window
+        //setting the size of the window
         setSize(400, 500);
-    //making sure that the red x works on to close window
+        //making sure that the red x works on to close window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //setting visible for the frame, otherwise you see nothing
+        //setting visible for the frame, otherwise you see nothing
         setVisible(true);
+
+        return questionLabel;
+    }
     
     public double userResults(){
         return 0.0;

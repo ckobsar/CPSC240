@@ -16,9 +16,9 @@ public class State {
         this.choice4 = in.nextLine();
         this.correctAns = in.nextInt();
     }
-    public String getStateName() {
-        return stateName;
-    }
+//    public String getStateName() {
+//        return stateName;
+//    }
 
     public String getChoice2() {
         return choice2;
@@ -39,10 +39,8 @@ public class State {
     public String getChoice1() {
         return choice1;
     }
-}
-    // Here I ccould have created a Map with State and its capitols, but
-    // I chose this instead. Two arraylists the first will contain states, and
-    // the second capitol names.
+
+    // ArrayList for state names and capitols
     private ArrayList<String> states = new ArrayList<>();
     private ArrayList<String> capitols = new ArrayList<>();
 
@@ -165,3 +163,4 @@ public class State {
         return states;
     }
 }
+
