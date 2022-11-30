@@ -93,7 +93,29 @@ public class Quiz extends JFrame implements ActionListener {
         //getting the state that user clicked on
         String stateClicked = e.getActionCommand();
 
-        //
+    // WE NEED TO FIND A WAY TO LOOP THROUGH STATES/CAPITOL
+            
+    /*
+    SOMETHING LIKE THIS THAT LOOPS THROUGH AND PROVIDES CORRECT ANSWER
+    
+            choice.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    State california = allStates.get(4);
+
+                    if (california.getAnswer().equals(choice4.getText())){
+
+                        choice4.setBorderPainted(false);
+                        choice4.setBackground(Color.GREEN);
+                        choice4.setOpaque(true);
+
+                    }
+
+
+                }
+    */        
+        
     }
 }
 
