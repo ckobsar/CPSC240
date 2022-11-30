@@ -70,7 +70,7 @@ public class Quiz extends JFrame implements ActionListener {
         mainPanel.add(scrollPane);
     
     //add mainpanel to frame itself so you can see
-        add(mainPane);
+        add(mainPanel);
     //setting the size of the window
         setSize(400, 500);
     //making sure that the red x works on to close window
@@ -87,7 +87,10 @@ public class Quiz extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //getting the state that user clicked on
+        String stateClicked = e.getActionCommand();
 
+        //
     }
 }
 
