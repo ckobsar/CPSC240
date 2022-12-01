@@ -1,117 +1,214 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Quiz extends JFrame implements ActionListener {
-    private static ArrayList<State> quiz;
-    static JLabel counterLabel = new JLabel("\tCorrect: ");
-    static int counter = 0;
-    static JPanel mainPanel = new JPanel();
-    static JPanel stateContainer = new JPanel();
-    static JLabel questionLabel = new JLabel("What is the Capitol of: " + quiz.get(0).getStateName());
+    private List<State> states = new ArrayList<State>();
+    private List<Question> questions;
 
-    // 50 state buttons in an array
-    static JButton[] states = new JButton[50];
+    private int currentQuestion;
 
-    // here are the four choices that each state has
-    static JButton choice1 = new JButton(quiz.get(0).getChoice1());
-    static JButton choice2 = new JButton(quiz.get(0).getChoice2());
-    static JButton choice3 = new JButton(quiz.get(0).getChoice3());
-    static JButton choice4 = new JButton(quiz.get(0).getChoice4());
+    private JPanel questionSelectPanel = new JPanel();
 
-    // scroll the 50 states horizontally
-    static JScrollPane scrollPane = new JScrollPane(stateContainer);
+    private JLabel questionLabel = new JLabel("", SwingConstants.CENTER);
+    private JLabel correctLabel = new JLabel("", SwingConstants.CENTER);
 
-    //constructor loads 50 states and answer choices from state-list
-    public Quiz(){
-        mainPanel.setLayout(null);
+    private JButton choice1 = new JButton();
+    private JButton choice2 = new JButton();
+    private JButton choice3 = new JButton();
+    private JButton choice4 = new JButton();
 
-        File file = new File("stateslist.txt");
-        try{
-            Scanner in = new Scanner(file);
-            quiz = new ArrayList<>();
-            while (in.hasNextLine()){
-                quiz.add(new State(in));
-                in.nextLine();
-                
+    public static void main(String[] args) {
+        // running the Quiz panel
+        new Quiz();
+    }
+
+    // reads states (from a file?)
+    private void readStates(String filename) throws FileNotFoundException {
+        File text = new File(filename);
+        Scanner in = new Scanner(text);
+
+        while (in.hasNextLine()) {
+            states.add(new State(in));
+        }
+    }
+
+    // Regenerates questions
+    public void generateQuestions() {
+        this.questions = states
+                .stream()
+                .map(state -> new Question(this, state, states))
+                .toList();
+
+        // setup state buttons
+        this.questionSelectPanel.removeAll();
+
+        for (Question q : this.questions) {
+            this.questionSelectPanel.add(q.getButton());
+        }
+    }
+
+    // Writes new high score to a file
+    public void writeHighScore(String filename, int score, String name) throws IOException {
+        File text = new File(filename);
+        text.createNewFile();
+
+        // load high scores
+        Scanner in = new Scanner(text);
+        ArrayList<String> scores = new ArrayList<String>();
+        while (in.hasNextLine()) {
+            scores.add(in.nextLine());
+        }
+
+        in.close();
+
+        // add new high score
+        int place = scores.size();
+        for (int i = 0; i < scores.size(); i++) {
+            String[] line = scores.get(i).split("\\s+");
+
+            int foundScore = Integer.parseInt(line[0]);
+
+            if (foundScore < score) {
+                place = i;
+                break;
             }
         }
-        catch (Exception stateReadError){
-            stateReadError.printStackTrace();
+
+        scores.add(place, String.format("%d %s", score, name));
+
+        // write to file
+        FileWriter out = new FileWriter(text, false);
+
+        for (String line : scores) {
+            out.write(line + "\n");
         }
+
+        out.flush();
+        out.close();
     }
 
-    public JLabel getQuestionLabel() {
-        // set where the scroll pane will be on the main panel
-        scrollPane.setBounds(10, 20, 360, 60);
-        // set where the question label will sit inside the main panel
-        questionLabel.setBounds(50, 105, 300, 40);
-        //set the postion for the choices
-        choice1.setBounds(50, 160, 200, 40);
-        choice2.setBounds(50, 200, 200, 40);
-        choice3.setBounds(50, 240, 200, 40);
-        choice4.setBounds(50, 280, 200, 40);
-        // setting position of counter label
-        counterLabel.setBounds(10, 360, 300, 40);
-        // add all components to the main panel
-        mainPanel.add(counterLabel);
-        mainPanel.add(questionLabel);
-        mainPanel.add(choice1);
-        mainPanel.add(choice2);
-        mainPanel.add(choice3);
-        mainPanel.add(choice4);
-        // add scroll to the main panel
-        mainPanel.add(scrollPane);
-        //add mainpanel to frame itself so you can see
-        add(mainPanel);
-        //setting the size of the window
-        setSize(400, 500);
-        //making sure that the red x works on to close window
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setting visible for the frame, otherwise you see nothing
-        setVisible(true);
+    //set the panel to null so that you postion components
+    public Quiz(){
+        // initialize states list first
+        try {
+            this.readStates("states.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not open states.txt for reading!");
+            System.exit(1);
+        }
+        this.generateQuestions();
 
-        return questionLabel;
-    }
-    
-    public double userResults(){
-        return 0.0;
-    }
-    public void userScore(){
+        JPanel questionPanel = new JPanel(new BorderLayout());
+        questionPanel.add(questionLabel, BorderLayout.PAGE_START);
 
+        JPanel choicesPanel = new JPanel(new FlowLayout());
+        choicesPanel.add(choice1);
+        choicesPanel.add(choice2);
+        choicesPanel.add(choice3);
+        choicesPanel.add(choice4);
+        questionPanel.add(choicesPanel, BorderLayout.CENTER);
+
+        JScrollPane questionScroll = new JScrollPane(questionSelectPanel);
+        questionScroll.setMinimumSize(new Dimension(0, 60));
+        questionScroll.setPreferredSize(new Dimension(500, 60));
+
+        // default to first question
+        this.changeQuestion(questions.get(0));
+
+        // setup listeners
+        choice1.addActionListener(this);
+        choice2.addActionListener(this);
+        choice3.addActionListener(this);
+        choice4.addActionListener(this);
+
+        this.getContentPane().setLayout(new BorderLayout());
+        this.getContentPane().add(questionScroll, BorderLayout.PAGE_START);
+        //this.getContentPane().add(questionPanel, BorderLayout.PAGE_START);
+        this.getContentPane().add(questionPanel, BorderLayout.CENTER);
+        this.getContentPane().add(correctLabel, BorderLayout.PAGE_END);
+
+        this.setSize(500, 200);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+
+    public void changeQuestion(Question q) {
+        this.currentQuestion = this.questions.indexOf(q);
+
+        questionLabel.setText("What is the capital of " + q.getState().getName() + "?");
+        choice1.setText(q.getChoices()[0]);
+        choice2.setText(q.getChoices()[1]);
+        choice3.setText(q.getChoices()[2]);
+        choice4.setText(q.getChoices()[3]);
+    }
+
+    public int numCorrect() {
+        return (int) this.questions
+                .stream()
+                .filter(q -> q.getStatus() == Question.CORRECT)
+                .count();
+    }
+
+    public int numAnswered() {
+        return (int) this.questions
+                .stream()
+                .filter(q -> q.getStatus() != Question.UNANSWERED)
+                .count();
+    }
+
+    public boolean completed() {
+        return this.numAnswered() == this.questions.size();
+    }
+
+    public Question current() {
+        return this.questions.get(this.currentQuestion);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //getting the state that user clicked on
-        String stateClicked = e.getActionCommand();
+        String answer = e.getActionCommand();
 
-    // WE NEED TO FIND A WAY TO LOOP THROUGH STATES/CAPITOL
-            
-    /*
-    SOMETHING LIKE THIS THAT LOOPS THROUGH AND PROVIDES CORRECT ANSWER
-    
-            choice.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+        if (this.current().getStatus() == Question.UNANSWERED) {
+            if (this.current().getState().getCapitalName().equals(answer)) {
+                this.current().setStatus(Question.CORRECT);
+            } else {
+                this.current().setStatus(Question.INCORRECT);
+            }
 
-                    State california = allStates.get(4);
+            // update count
+            this.correctLabel.setText("Correct: " + this.numCorrect());
 
-                    if (california.getAnswer().equals(choice4.getText())){
+            // move onto the next question
+            if (this.currentQuestion + 1 < this.questions.size()) {
+                this.changeQuestion(this.questions.get(this.currentQuestion + 1));
+            }
 
-                        choice4.setBorderPainted(false);
-                        choice4.setBackground(Color.GREEN);
-                        choice4.setOpaque(true);
+            // check if completed
+            if (this.completed()) {
+                // create dialog
+                String name = JOptionPane.showInputDialog(
+                        this,
+                        "Score: " + this.numCorrect() + ",\n Enter your name:",
+                        "Completed!",
+                        JOptionPane.QUESTION_MESSAGE);
 
-                    }
-
-
+                try {
+                    this.writeHighScore("highscores.txt", this.numCorrect(), name);
+                } catch (IOException er) {
+                    System.out.printf("Failed to write to highscores.txt: %s", er);
+                    System.exit(1);
                 }
-    */        
-        
+
+                // reset game
+                this.generateQuestions();
+            }
+        }
     }
 }
 
