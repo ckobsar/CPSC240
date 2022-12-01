@@ -93,7 +93,7 @@ public class Quiz extends JFrame implements ActionListener {
         out.close();
     }
 
-    //set the panel to null so that you postion components
+    //set the panel to null so that you position components
     public Quiz(){
         // initialize states list first
         try {
