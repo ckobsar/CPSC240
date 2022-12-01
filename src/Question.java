@@ -1,12 +1,12 @@
-import java.util.List;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.stream.Collectors;
+import java.util.List;
 import java.util.Random;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JButton;
-import java.awt.Color;
+import java.util.stream.Collectors;
 
 public class Question implements ActionListener {
     private Quiz quiz;
